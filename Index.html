@@ -3,113 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanha Pro-Capital - Loan Form</title>
+    <title>Kanha Pro-Capital - Loan Application Form</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f6f9;
             margin: 0;
-            padding: 10px;
+            padding: 15px;
             color: #333;
         }
         .container {
-            max-width: 600px;
+            max-width: 700px;
             background: #fff;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
-        h1, h2, h3 {
+        .header-title {
             color: #0b3c5d;
-            text-align: center;
-            margin-bottom: 5px;
+            text-align: left;
+            margin: 0;
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
-        h1 { font-size: 24px; font-weight: bold; }
-        h2 { font-size: 18px; margin-top: 0; border-bottom: 2px solid #0b3c5d; padding-bottom: 5px; }
-        .section {
-            margin-bottom: 25px;
+        .header-subtitle {
+            color: #2196f3;
+            text-align: left;
+            margin: 5px 0 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: #0b3c5d;
+            margin-bottom: 20px;
+        }
+        h2 {
+            background-color: #e3f2fd;
+            color: #0b3c5d;
+            font-size: 16px;
+            padding: 8px 12px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0b3c5d;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .form-grid { grid-template-columns: 1fr; }
         }
         .form-group {
             margin-bottom: 12px;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        @media (max-width: 600px) {
+            .form-group.full-width { grid-column: span 1; }
         }
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 13px;
+            color: #555;
         }
-        input[type="text"], input[type="number"], textarea, select {
+        input[type="text"], input[type="number"], textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
             font-size: 14px;
+            background-color: #fafafa;
+        }
+        input:focus, textarea:focus {
+            border-color: #2196f3;
+            outline: none;
+            background-color: #fff;
         }
         .radio-box {
-            background: #f9f9f9;
-            padding: 12px;
-            border: 1px solid #ddd;
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
             border-radius: 6px;
-            margin-bottom: 10px;
-        }
-        .info-box {
-            background-color: #e3f2fd;
-            border-left: 5px solid #2196f3;
-            padding: 10px;
-            font-size: 13px;
-            border-radius: 4px;
             margin-bottom: 15px;
+            position: relative;
+        }
+        .radio-box label {
+            font-weight: normal;
+            cursor: pointer;
+            padding-left: 5px;
+        }
+        .radio-box input[type="radio"] {
+            margin-right: 8px;
+            transform: scale(1.2);
+            vertical-align: middle;
+        }
+        .info-list {
+            padding-left: 15px;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .sig-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        @media (max-width: 500px) {
+            .sig-row { flex-direction: column; }
         }
         .sig-container {
+            flex: 1;
             text-align: center;
-            margin-top: 15px;
         }
         canvas {
-            border: 2px dashed #999;
-            background-color: #f0f2f6;
+            border: 1px dashed #999;
+            background-color: #f9f9f9;
             border-radius: 4px;
             touch-action: none;
             width: 100%;
-            height: 150px;
+            height: 120px;
         }
         .clear-btn {
-            background-color: #ff5722;
-            color: white;
+            background-color: #e0e0e0;
+            color: #333;
             border: none;
-            padding: 5px 10px;
+            padding: 4px 10px;
             margin-top: 5px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
         }
         .submit-btn {
             background-color: #0b3c5d;
             color: white;
             border: none;
             width: 100%;
-            padding: 15px;
-            font-size: 18px;
+            padding: 14px;
+            font-size: 16px;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .submit-btn:hover {
+            background-color: #07273e;
         }
         
-        /* प्रिंट लेआउट का हिडन टेक्स्ट एरिया */
+        /* प्रिंट व्यू के लिए टेक्स्ट */
         .print-value {
             display: none;
-            font-size: 15px;
-            padding: 5px 0;
-            border-bottom: 1px dashed #ccc;
+            font-size: 14px;
+            padding: 4px 0;
+            border-bottom: 1px dotted #ccc;
+            font-weight: normal;
+            color: #000;
+        }
+        .sig-image {
+            display: none;
         }
 
-        /* 🖨️ A4 साइज प्रिंट/PDF सेटिंग्स */
+        /* 🖨️ क्रिटिकल: A4 साइज पीडीएफ / प्रिंट लेआउट सीमलेस सेटिंग्स */
         @media print {
+            @page {
+                size: A4;
+                margin: 15mm 15mm 15mm 15mm;
+            }
             body {
                 background-color: #fff;
                 padding: 0;
+                margin: 0;
+                color: #000;
             }
             .container {
                 box-shadow: none;
@@ -117,47 +191,54 @@
                 width: 100%;
                 padding: 0;
             }
-            /* इनपुट बॉक्सेज़, बटन्स और इंस्ट्रक्शन्स छुपाएं */
-            input, textarea, select, .clear-btn, .submit-btn, .radio-box, input[type="radio"], canvas {
+            /* इनपुट एलिमेंट्स और बटन्स छुपाएं */
+            input, textarea, .clear-btn, .submit-btn, .radio-box input[type="radio"], canvas {
                 display: none !important;
             }
-            /* प्रिंट वैल्यूज को दिखाएं */
+            .radio-box {
+                border: none;
+                padding: 0;
+                margin-bottom: 5px;
+            }
+            /* टेक्स्ट डेटा दिखाएं */
             .print-value {
                 display: block !important;
             }
-            /* सिग्नेचर की इमेजेस को प्रिंट में दिखाने के लिए */
+            h2 {
+                background-color: #f0f0f0 !important;
+                color: #0b3c5d !important;
+                border-left: 4px solid #0b3c5d !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .sig-row {
+                flex-direction: row !important;
+                margin-top: 40px;
+            }
+            .sig-container {
+                width: 48%;
+            }
             .sig-image {
                 display: block !important;
                 max-width: 200px;
-                height: auto;
-                border-bottom: 1px solid #333;
-                margin: 10px auto;
+                height: 70px;
+                margin: 5px auto;
+                object-fit: contain;
+                border-bottom: 1px dashed #000;
             }
-            .sig-container {
-                display: inline-block;
-                width: 45%;
-                vertical-align: top;
-            }
-            hr {
-                border: 1px solid #0b3c5d;
-            }
-        }
-        
-        .sig-image {
-            display: none;
         }
     </style>
 </head>
 <body>
 
-<div class="container" id="formContainer">
-    <h1>KANHA PRO-CAPITAL</h1>
-    <h3>लोन आवेदन फॉर्म (Loan Application Form)</h3>
+<div class="container">
+    <div class="header-title">KANHA PRO-CAPITAL</div>
+    <div class="header-subtitle">लोन आवेदन फॉर्म (Loan Application Form)</div>
     <hr>
 
     <form id="loanForm">
-        <div class="section">
-            <h2>1. आवेदक की बुनियादी जानकारी</h2>
+        <h2>1. आवेदक की बुनियादी जानकारी (Applicant's Basic Information)</h2>
+        <div class="form-grid">
             <div class="form-group">
                 <label>आवेदक का पूरा नाम:</label>
                 <input type="text" id="fullName" required>
@@ -178,47 +259,47 @@
                 <input type="text" id="panNo" required>
                 <div class="print-value" id="p_panNo"></div>
             </div>
-            <div class="form-group">
+            <div class="form-group full-width">
                 <label>वर्तमान व्यवसाय:</label>
                 <input type="text" id="occupation">
                 <div class="print-value" id="p_occupation"></div>
             </div>
-            <div class="form-group">
+            <div class="form-group full-width">
                 <label>स्थायी पता:</label>
-                <textarea id="address" rows="3" required></textarea>
+                <textarea id="address" rows="2" required></textarea>
                 <div class="print-value" id="p_address"></div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>2. लोन प्रोडक्ट का चयन</h2>
-            <div class="print-value" id="p_loanProduct" style="font-weight: bold; margin-bottom: 10px;"></div>
-            
-            <div class="radio-box">
-                <input type="radio" id="opt1" name="loanProduct" value="विकल्प 1: सहारा 30 (Sahara 30) — इमरजेंसी लोन" checked>
-                <label style="display:inline;" for="opt1">
-                    <strong>विकल्प 1: सहारा 30 (Sahara 30) — इमरजेंसी लोन</strong><br>
-                    राशि: ₹4,000 से ₹15,000 | ब्याज: 10% फ्लैट | अवधि: 1 महीना
-                </label>
-            </div>
-            
-            <div class="radio-box">
-                <input type="radio" id="opt2" name="loanProduct" value="विकल्प 2: इमरजेंसी लोन प्लस (Emergency Loan Plus)">
-                <label style="display:inline;" for="opt2">
-                    <strong>विकल्प 2: इमरजेंसी लोन प्लस (Emergency Loan Plus)</strong><br>
-                    राशि: ₹25,000 से ₹30,000 | ब्याज: 10% रिड्यूसिंग | अवधि: 8 महीने
-                </label>
-            </div>
+        <h2>2. लोन प्रोडक्ट का चयन (Select Loan Product)</h2>
+        <p style="font-size: 11px; color: #666; margin-top: -10px; margin-bottom: 10px;">* कृपया अपनी आवश्यकता के अनुसार किसी एक लोन विकल्प के बॉक्स में सही [ ✓ ] का निशान लगाएं।</p>
+        
+        <div class="print-value" id="p_loanProduct" style="font-weight: bold; margin-bottom: 15px; color: #0b3c5d;"></div>
 
-            <div class="form-group">
-                <label>आवश्यक लोन राशि (₹):</label>
-                <input type="number" id="loanAmount" min="0" required>
-                <div class="print-value" id="p_loanAmount"></div>
-            </div>
+        <div class="radio-box">
+            <input type="radio" id="opt1" name="loanProduct" value="विकल्प 1: सहारा 30 (Sahara 30) — इमरजेंसी लोन" checked>
+            <label for="opt1">
+                <strong>विकल्प 1: सहारा 30 (Sahara 30) — इमरजेंसी लोन</strong><br>
+                <span style="font-size: 12px; color: #555;">लोन राशि सीमा: ₹4,000 से ₹15,000 | ब्याज दर: 10% फ्लैट ब्याज (Flat) | लोन अवधि: 1 महीना (One Month)</span>
+            </label>
+        </div>
+        
+        <div class="radio-box">
+            <input type="radio" id="opt2" name="loanProduct" value="विकल्प 2: इमरजेंसी लोन प्लस (Emergency Loan Plus)">
+            <label for="opt2">
+                <strong>विकल्प 2: इमरजेंसी लोन प्लस (Emergency Loan Plus)</strong><br>
+                <span style="font-size: 12px; color: #555;">लोन राशि सीमा: ₹25,000 से ₹30,000 तक | ब्याज दर: 10% रिड्यूसिंग ब्याज (Reducing) | लोन अवधि: 8 महीने (8 Months)</span>
+            </label>
         </div>
 
-        <div class="section">
-            <h2>3. बैंक खाते का विवरण</h2>
+        <div class="form-group" style="margin-top: 15px;">
+            <label>आवश्यक लोन राशि (₹):</label>
+            <input type="number" id="loanAmount" min="0" required>
+            <div class="print-value" id="p_loanAmount"></div>
+        </div>
+
+        <h2>3. बैंक खाते का विवरण (Bank Account Details)</h2>
+        <div class="form-grid">
             <div class="form-group">
                 <label>बैंक का नाम:</label>
                 <input type="text" id="bankName" required>
@@ -241,68 +322,70 @@
             </div>
         </div>
 
-        <div class="section">
-            <h2>4. नियम, शर्तें एवं घोषणा</h2>
-            <div class="info-box">
-                • <strong>सहारा 30:</strong> कुल राशि (मूलधन + 10% फ्लैट ब्याज) 1 महीने बाद एकमुश्त चुकानी होगी।<br><br>
-                • <strong>इमरजेंसी लोन प्लस:</strong> लोन राशि 8 महीनों की मासिक किश्तों (EMIs) में घटते हुए बैलेंस के आधार पर चुकानी होगी।<br><br>
-                • नियत तिथि (Due Date) के बाद भुगतान पर विलंब शुल्क (Late Fees) लगेगा।
+        <h2>4. नियम, शर्तें एवं घोषणा (Terms & Conditions)</h2>
+        <ul class="info-list">
+            <li><strong>सहारा 30 (विकल्प 1):</strong> इस लोन के तहत ली गई कुल राशि (मूलधन + 10% फ्लैट ब्याज) मुझे 1 महीने की अवधि समाप्त होने पर एकमुश्त चुकानी होगी।</li>
+            <li><strong>इमरजेंसी लोन प्लस (विकल्प 2):</strong> इस लोन की राशि 8 महीनों की मासिक किश्तों (EMIs) में चुकाई जाएगी, जिसमें ब्याज की गणना घटते हुए बैलेंस (Reducing Balance) के आधार पर की जाएगी।</li>
+            <li>नियत तिथि (Due Date) के बाद भुगतान करने की स्थिति में संस्था के नियमानुसार विलंब शुल्क (Late Fees) व अतिरिक्त ब्याज देय होगा।</li>
+        </ul>
+        
+        <div class="form-group" style="display: flex; align-items: flex-start; margin-top: 15px;">
+            <input type="checkbox" id="declaration" style="margin-top: 3px; margin-right: 8px;" checked required>
+            <label for="declaration" style="font-weight: normal; font-size: 13px; color: #222;">• मैं यह प्रमाणित करता/करती हूँ कि इस आवेदन पत्र में मेरे द्वारा दी गई सभी जानकारियाँ पूरी तरह सत्य और सही हैं।</label>
+        </div>
+
+        <div class="sig-row">
+            <div class="sig-container">
+                <label>आवेदक के हस्ताक्षर<br><span style="font-size:11px; font-weight:normal;">(Customer Signature)</span></label>
+                <canvas id="customerSig"></canvas>
+                <img id="imgCustomerSig" class="sig-image" alt="Customer Signature">
+                <button type="button" class="clear-btn" onclick="clearCanvas('customerSig')">साफ़ करें</button>
+                
+                <div style="margin-top: 15px; text-align: left;">
+                    <label style="display:inline-block;">दिनांक (Date):</label>
+                    <input type="text" id="currentDate" style="display:inline-block; width:120px; padding:5px;" readonly>
+                    <span class="print-value" id="p_currentDate" style="display:inline-block;"></span>
+                </div>
             </div>
-            <div class="form-group" style="display: flex; align-items: flex-start;">
-                <input type="checkbox" id="declaration" style="margin-top: 4px; margin-right: 8px;" required>
-                <label for="declaration" style="font-weight: normal; font-size: 13px;">मैं यह प्रमाणित करता/करती हूँ कि आवेदन पत्र में दी गई सभी जानकारियाँ पूरी तरह सत्य और सही हैं।</label>
+
+            <div class="sig-container">
+                <label style="color: #0b3c5d;">अधिकृत हस्ताक्षरकर्ता<br><span style="font-size:11px; font-weight:normal;">(Jagmohan - Kanha Pro-Capital)</span></label>
+                <canvas id="jagmohanSig"></canvas>
+                <img id="imgJagmohanSig" class="sig-image" alt="Jagmohan Signature">
+                <button type="button" class="clear-btn" onclick="clearCanvas('jagmohanSig')">साफ़ करें</button>
+                <div style="margin-top: 15px; font-size: 12px; font-weight: bold; color: #555;">सील / मोहर (Seal / Stamp)</div>
             </div>
         </div>
 
-        <div class="section" style="text-align: center;">
-            <h2>5. हस्ताक्षर अनुभाग (Signatures)</h2>
-            
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div class="sig-container">
-                    <label>आवेदक के हस्ताक्षर (Customer Signature)</label>
-                    <canvas id="customerSig"></canvas>
-                    <img id="imgCustomerSig" class="sig-image" alt="Customer Signature">
-                    <button type="button" class="clear-btn" onclick="clearCanvas('customerSig')">साफ़ करें</button>
-                    <div class="form-group" style="margin-top: 10px; text-align: left;">
-                        <label>दिनांक (Date):</label>
-                        <input type="text" id="currentDate" readonly>
-                        <div class="print-value" id="p_currentDate"></div>
-                    </div>
-                </div>
-
-                <div class="sig-container">
-                    <label style="color: #0b3c5d;">अधिकृत हस्ताक्षरकर्ता (Jagmohan)</label>
-                    <canvas id="jagmohanSig"></canvas>
-                    <img id="imgJagmohanSig" class="sig-image" alt="Jagmohan Signature">
-                    <button type="button" class="clear-btn" onclick="clearCanvas('jagmohanSig')">साफ़ करें</button>
-                    <p style="font-size: 12px; font-weight: bold; margin-top: 5px;">सील / मोहर (Seal / Stamp)</p>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" class="submit-btn">आवेदन फॉर्म सबमिट और प्रिंट करें</button>
+        <button type="submit" class="submit-btn">आवेदन फॉर्म सबमिट और PDF प्रिंट करें</button>
     </form>
 </div>
 
 <script>
+    // ऑटो-डेट सेट करें
     document.getElementById('currentDate').value = new Date().toLocaleDateString('hi-IN');
 
+    // कैनवास ड्रा लॉजिक (मोबाइल फ्रेंडली टच सपोर्ट)
     function setupCanvas(canvasId) {
         const canvas = document.getElementById(canvasId);
         const ctx = canvas.getContext('2d');
+        
+        // विजुअल चौड़ाई के हिसाब से पिक्सेल विड्थ सेट करें
         canvas.width = canvas.offsetWidth;
-        canvas.height = 150;
+        canvas.height = 120;
         
         ctx.strokeStyle = "#000000";
-        ctx.lineWidth = 3;
+        ctx.lineWidth = 2.5;
         ctx.lineCap = "round";
 
         let drawing = false;
 
+        // माउस (PC)
         canvas.addEventListener('mousedown', () => drawing = true);
         canvas.addEventListener('mouseup', () => { drawing = false; ctx.beginPath(); });
         canvas.addEventListener('mousemove', draw);
 
+        // टच (Mobile)
         canvas.addEventListener('touchstart', (e) => {
             drawing = true;
             const touch = e.touches[0];
@@ -337,11 +420,11 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // फॉर्म सबमिट पर मैजिक (A4 प्रिंट मोड)
+    // सबमिट हैंडलर (A4 ट्रांसफॉर्मेशन)
     document.getElementById('loanForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // 1. इनपुट बॉक्स की वैल्यू उठाकर प्रिंट वाले टेक्स्ट डिवीज़न में डालना
+        // डेटा ट्रांसफर टू प्रिंट लेआउट
         document.getElementById('p_fullName').innerText = document.getElementById('fullName').value;
         document.getElementById('p_mobileNo').innerText = document.getElementById('mobileNo').value;
         document.getElementById('p_aadharNo').innerText = document.getElementById('aadharNo').value;
@@ -355,21 +438,20 @@
         document.getElementById('p_ifscCode').innerText = document.getElementById('ifscCode').value;
         document.getElementById('p_currentDate').innerText = document.getElementById('currentDate').value;
 
-        // सेलेक्ट किया गया लोन प्रोडक्ट नेम निकालना
         const checkedLoan = document.querySelector('input[name="loanProduct"]:checked').value;
-        document.getElementById('p_loanProduct').innerText = "चुना गया लोन: " + checkedLoan;
+        document.getElementById('p_loanProduct').innerText = "चयनित लोन प्रोडक्ट: " + checkedLoan;
 
-        // 2. कैनवास के सिग्नेचर को इमेज (PNG) में बदलना ताकि प्रिंट हो सके
+        // सिग्नेचर को इमेज में कन्वर्ट करना
         const customerCanvas = document.getElementById('customerSig');
         const jagmohanCanvas = document.getElementById('jagmohanSig');
         
         document.getElementById('imgCustomerSig').src = customerCanvas.toDataURL();
         document.getElementById('imgJagmohanSig').src = jagmohanCanvas.toDataURL();
 
-        // 3. मोबाइल का प्रिंट / पीडीएफ सेव डायलॉग बॉक्स खोलना
+        // प्रिंट और डाउनलोड डायलॉग बॉक्स ट्रिगर करना
         setTimeout(() => {
             window.print();
-        }, 500);
+        }, 400);
     });
 </script>
 
