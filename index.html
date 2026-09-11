@@ -3,527 +3,1011 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>लोन आवेदन फॉर्म - KANHA PRO-CAPITAL</title>
+    <title>Loan Application Form - KANHA PRO-CAPITAL PVT LTD</title>
+    <!-- jsPDF & html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @page {
-            size: A4;
-            margin: 10mm 15mm;
+        :root {
+            --primary: #0f172a;
+            --brand-blue: #2563eb;
+            --brand-green: #059669;
+            --surface-bg: #f8fafc;
+            --border-color: #cbd5e1;
         }
 
         * {
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif;
         }
 
         body {
-            background-color: #f4f6f9;
-            padding: 20px 0;
+            background-color: #64748b;
+            color: #0f172a;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0 100px 0;
         }
 
-        .form-container {
-            background-color: #ffffff;
-            width: 210mm;
-            min-height: 297mm;
-            padding: 15mm 18mm;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
-            border-radius: 4px;
+        .app-bar {
+            width: 100%;
+            max-width: 800px;
+            background: var(--primary);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .header {
-            border-bottom: 2.5px solid #003366;
-            padding-bottom: 8px;
-            margin-bottom: 16px;
-        }
-
-        .header h1 {
-            color: #003366;
-            font-size: 22px;
+        .app-bar h1 {
+            font-size: 16px;
+            font-weight: 800;
             letter-spacing: 0.5px;
-            font-weight: bold;
         }
 
-        .header h2 {
-            color: #1d72b8;
-            font-size: 15px;
+        .main-container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .stepper {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 14px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.5;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .step-item.active {
+            opacity: 1;
+            color: var(--brand-blue);
+        }
+
+        .step-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .step-item.active .step-number {
+            background: var(--brand-blue);
+            color: white;
+        }
+
+        .form-page {
+            display: none;
+        }
+
+        .form-page.active {
+            display: block;
+        }
+
+        .doc-sheet {
+            background: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            width: 100%;
+            min-height: 1050px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sheet-header {
+            background: #0f172a;
+            color: white;
+            padding: 24px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 4px solid var(--brand-blue);
+        }
+
+        .sheet-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .sheet-header .tagline {
+            font-size: 13px;
+            color: #34d399;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .sheet-header .udyam-subtext {
+            font-size: 11px;
+            color: #94a3b8;
             margin-top: 4px;
-            font-weight: normal;
+            font-weight: 600;
+        }
+
+        .sheet-header .doc-badge {
+            background: rgba(37, 99, 235, 0.25);
+            border: 1px solid #3b82f6;
+            color: #93c5fd;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .sheet-body {
+            padding: 28px;
+            flex-grow: 1;
         }
 
         .section-title {
-            background-color: #e6f0fa;
-            color: #003366;
-            padding: 7px 12px;
             font-size: 14px;
-            font-weight: bold;
-            margin-top: 14px;
-            margin-bottom: 10px;
-            border-left: 4px solid #003366;
+            font-weight: 800;
+            color: var(--brand-blue);
+            text-transform: uppercase;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 6px;
+            margin: 20px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
         .form-group {
-            flex: 1;
             display: flex;
             flex-direction: column;
+            gap: 6px;
         }
 
         .form-group.full-width {
-            flex: 100%;
+            grid-column: span 2;
         }
 
         label {
             font-size: 12px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 4px;
+            font-weight: 700;
+            color: #334155;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        input[type="date"] {
+        input {
             width: 100%;
-            height: 34px;
-            padding: 6px 10px;
-            border: 1px solid #b0b0b0;
-            border-radius: 4px;
-            background-color: #fafafa;
+            height: 42px;
+            padding: 0 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             font-size: 13px;
+            background-color: #f8fafc;
+        }
+
+        .uppercase-field {
+            text-transform: uppercase;
         }
 
         input:focus {
             outline: none;
-            border-color: #003366;
-            background-color: #fff;
+            border-color: var(--brand-blue);
+            background: white;
         }
 
-        .radio-box {
-            border: 1px solid #d0d0d0;
-            border-radius: 4px;
-            padding: 10px 12px;
+        .rules-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--brand-blue);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .rules-list li {
+            font-size: 12px;
+            color: #475569;
             margin-bottom: 8px;
-            background-color: #fff;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .radio-box input[type="radio"] {
-            margin-top: 3px;
-        }
-
-        .radio-details label {
-            font-size: 13px;
-            color: #000;
-        }
-
-        .radio-details p {
-            font-size: 11px;
-            color: #555;
-            margin-top: 2px;
-        }
-
-        .instruction {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 8px;
-            font-style: italic;
-        }
-
-        .terms-list {
-            padding-left: 18px;
-            font-size: 11.5px;
-            color: #333;
-            line-height: 1.45;
-            margin-bottom: 10px;
-        }
-
-        .terms-list li {
-            margin-bottom: 4px;
-        }
-
-        .declaration {
+            line-height: 1.5;
             display: flex;
             align-items: flex-start;
             gap: 8px;
-            font-size: 12px;
-            color: #000;
-            font-weight: bold;
-            margin-bottom: 15px;
         }
 
-        /* E-Signature Canvas Style */
-        .signature-section {
+        .rules-list li::before {
+            content: "•";
+            color: var(--brand-blue);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .loan-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .loan-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            background: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .loan-card:hover {
+            border-color: #93c5fd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .loan-card.selected {
+            border-color: var(--brand-blue);
+            background: #f0f6ff;
+            box-shadow: 0 0 0 1px var(--brand-blue);
+        }
+
+        .loan-card-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .loan-card-head h4 {
+            font-size: 15px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .loan-card-head input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--brand-blue);
+            cursor: pointer;
+        }
+
+        .loan-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            width: fit-content;
+        }
+
+        .tag-blue { background: #dbeafe; color: #1e40af; }
+        .tag-green { background: #d1fae5; color: #065f46; }
+
+        .loan-details {
+            font-size: 12px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .loan-details div {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
-            gap: 25px;
+            margin-top: 6px;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 6px;
         }
 
-        .signature-box {
-            flex: 1;
+        .loan-details strong {
+            color: #0f172a;
+        }
+
+        .signatures-single {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto 0 auto;
+        }
+
+        .sig-box {
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 14px;
             text-align: center;
+            background: #f8fafc;
         }
 
-        .signature-box .title {
-            font-size: 12px;
-            font-weight: bold;
-            color: #333;
+        .sig-box h5 {
+            font-size: 13px;
+            color: #0f172a;
+            font-weight: 700;
         }
 
-        .signature-box .subtitle {
+        .sig-box span {
             font-size: 11px;
-            color: #666;
-            margin-bottom: 4px;
+            color: #64748b;
+            display: block;
+            margin-bottom: 10px;
         }
 
-        .canvas-container {
+        .canvas-wrap {
+            height: 110px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
             position: relative;
-            border: 1px dashed #003366;
-            background-color: #fafafa;
-            border-radius: 4px;
-            height: 90px;
+            touch-action: none;
         }
 
         canvas {
             width: 100%;
             height: 100%;
-            cursor: crosshair;
-            touch-action: none; /* Mobile touch support */
+            display: block;
+            touch-action: none;
+        }
+
+        .sig-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
         }
 
         .clear-btn {
-            margin-top: 5px;
+            margin-top: 10px;
             font-size: 11px;
-            padding: 3px 10px;
-            background-color: #e0e0e0;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-
-        .clear-btn:hover {
-            background-color: #d0d0d0;
-        }
-
-        .footer-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .footer-row .form-group {
-            flex: 0 0 40%;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background-color: #003366;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 15px;
-            font-weight: bold;
+            padding: 5px 14px;
+            background: #fff;
+            border: 1px solid #cbd5e1;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 20px;
+            font-weight: 600;
         }
 
-        .submit-btn:hover {
-            background-color: #002244;
+        .kyc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
-        @media print {
-            body {
-                background-color: #fff;
-                padding: 0;
+        .kyc-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .kyc-card.full-span {
+            grid-column: span 2;
+        }
+
+        .kyc-card h4 {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1e293b;
+            width: 100%;
+            text-align: left;
+        }
+
+        .kyc-preview-frame {
+            width: 100%;
+            height: 160px;
+            background: #f8fafc;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* High Resolution Image Preview Styling */
+        .kyc-preview-frame img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: auto;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* High Resolution Box for Passbook */
+        .kyc-preview-frame.passbook-frame {
+            height: 240px;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .kyc-preview-frame span {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .upload-controls {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-upload {
+            flex: 1;
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 8px 0;
+            font-size: 11px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-upload input {
+            display: none;
+        }
+
+        .sheet-footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 14px;
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .action-dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 12px 28px;
+            border-radius: 30px;
+            display: flex;
+            gap: 14px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .dock-btn {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .dock-btn.primary {
+            background: var(--brand-blue);
+        }
+
+        .dock-btn.save-pdf {
+            background: var(--brand-green);
+        }
+
+        .pdf-export-mode {
+            width: 794px !important;
+            height: 1123px !important;
+            min-height: 1123px !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            position: relative !important;
+            box-sizing: border-box !important;
+        }
+
+        .pdf-export-mode .upload-controls, 
+        .pdf-export-mode .clear-btn {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .form-grid, .loan-options-grid, .kyc-grid {
+                grid-template-columns: 1fr;
             }
-            .form-container {
-                box-shadow: none;
-                width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-            .submit-btn, .clear-btn {
-                display: none !important;
-            }
-            .canvas-container {
-                border: 1px solid #999;
-            }
-            input {
-                border: 1px solid #888 !important;
-                background-color: #fff !important;
+            .form-group.full-width, .kyc-card.full-span {
+                grid-column: span 1;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <form id="loanForm">
+    <div class="main-container">
         
-        <!-- Header -->
-        <div class="header">
-            <h1>KANHA PRO-CAPITAL</h1>
-            <h2>लोन आवेदन फॉर्म (Loan Application Form)</h2>
+        <div class="app-bar">
+            <h1>KANHA PRO-CAPITAL PVT LTD</h1>
+            <span style="font-size: 11px; opacity: 0.8;">Portal Application</span>
         </div>
 
-        <!-- Section 1 -->
-        <div class="section-title">1. आवेदक की बुनियादी जानकारी (Applicant's Basic Information)</div>
-        
-        <div class="row">
-            <div class="form-group">
-                <label>आवेदक का पूरा नाम:</label>
-                <input type="text" name="fullname" required>
+        <div class="stepper">
+            <div class="step-item active" id="step1">
+                <span class="step-number">1</span>
+                <span>आवेदक विवरण</span>
             </div>
-            <div class="form-group">
-                <label>मोबाइल नंबर:</label>
-                <input type="text" name="mobile" maxlength="10" required>
+            <div class="step-item" id="step2">
+                <span class="step-number">2</span>
+                <span>बैंक व लोन</span>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label>आधार नंबर:</label>
-                <input type="text" name="aadhaar" maxlength="12" required>
-            </div>
-            <div class="form-group">
-                <label>पैन कार्ड नंबर:</label>
-                <input type="text" name="pan" style="text-transform:uppercase;" required>
+            <div class="step-item" id="step3">
+                <span class="step-number">3</span>
+                <span>KYC दस्तावेज</span>
             </div>
         </div>
 
-        <div class="row">
-            <div class="form-group full-width">
-                <label>ईमेल आईडी (Email ID):</label>
-                <input type="email" name="email" required>
-            </div>
-        </div>
+        <form id="loanForm">
 
-        <div class="row">
-            <div class="form-group full-width">
-                <label>वर्तमान व्यवसाय (Occupation):</label>
-                <input type="text" name="occupation">
-            </div>
-        </div>
+            <!-- PAGE 1 -->
+            <div class="form-page active" id="page1">
+                <div class="doc-sheet" id="sheet1">
+                    <div class="sheet-header">
+                        <div>
+                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <div class="tagline">Empowering Your Financial Growth</div>
+                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
+                        </div>
+                        <div class="doc-badge">Step 1: Applicant</div>
+                    </div>
 
-        <div class="row">
-            <div class="form-group full-width">
-                <label>मासिक आय (Monthly Income - ₹):</label>
-                <input type="number" name="monthly_income" placeholder="उदा. 25000">
-            </div>
-        </div>
+                    <div class="sheet-body">
+                        <div class="section-title">1. आवेदक की जानकारी (Personal Details)</div>
+                        
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label>आवेदक का पूरा नाम *</label>
+                                <input type="text" id="fullname" placeholder="उदाहरण: युवराज कुमार" required>
+                            </div>
+                            <div class="form-group">
+                                <label>मोबाइल नंबर *</label>
+                                <input type="text" maxlength="10" placeholder="10 Digit Number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>वैकल्पिक मोबाइल</label>
+                                <input type="text" maxlength="10" placeholder="Alternate Number">
+                            </div>
+                            <div class="form-group">
+                                <label>आधार नंबर *</label>
+                                <input type="text" maxlength="12" placeholder="12 Digit Aadhaar" required>
+                            </div>
+                            <div class="form-group">
+                                <label>पैन कार्ड नंबर *</label>
+                                <input type="text" id="pancard" class="uppercase-field" placeholder="ABCDE1234F" oninput="forceUppercase(this)" required>
+                            </div>
+                            <div class="form-group">
+                                <label>गारंटर का नाम</label>
+                                <input type="text" placeholder="Guarantor Name">
+                            </div>
+                            <div class="form-group">
+                                <label>ईमेल आईडी *</label>
+                                <input type="email" placeholder="name@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>वर्तमान व्यवसाय</label>
+                                <input type="text" placeholder="Job / Business">
+                            </div>
+                            <div class="form-group">
+                                <label>मासिक आय (₹)</label>
+                                <input type="number" placeholder="Income">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>स्थायी पता</label>
+                                <input type="text" placeholder="Complete Address">
+                            </div>
+                        </div>
 
-        <div class="row">
-            <div class="form-group full-width">
-                <label>स्थायी पता:</label>
-                <input type="text" name="address">
-            </div>
-        </div>
-
-        <!-- Section 2 -->
-        <div class="section-title">2. लोन प्रोडक्ट का चयन (Select Loan Product)</div>
-        <p class="instruction">* कृपया अपनी आवश्यकता के अनुसार किसी एक लोन विकल्प के बॉक्स में सही [ &#10004; ] का निशान लगाएं।</p>
-
-        <div class="radio-box">
-            <input type="radio" id="p1" name="loan_product" value="sahara30" checked>
-            <div class="radio-details">
-                <label for="p1"><b>विकल्प 1: सहारा 30 (Sahara 30) – इमरजेंसी लोन</b></label>
-                <p>लोन राशि सीमा: ₹4,000 से ₹15,000 | ब्याज दर: 2% फ्लैट ब्याज (Flat) | लोन अवधि: 1 महीना (One Month)</p>
-            </div>
-        </div>
-
-        <div class="radio-box">
-            <input type="radio" id="p2" name="loan_product" value="emergency_plus">
-            <div class="radio-details">
-                <label for="p2"><b>विकल्प 2: कन्हा लोन कंसलटेंट (Kanha loan consultant)</b></label>
-                <p>लोन राशि सीमा: ₹25,000 से ₹5,00,000 तक | ब्याज दर: 10%-26% (Reducing) | लोन अवधि: 8-36 महीने (8-36 Months)</p>
-            </div>
-        </div>
-
-        <div class="row" style="margin-top: 6px;">
-            <div class="form-group full-width">
-                <label>आवश्यक लोन राशि (₹):</label>
-                <input type="number" name="loan_amount">
-            </div>
-        </div>
-
-        <!-- Section 3 -->
-        <div class="section-title">3. बैंक खाते का विवरण (Bank Account Details)</div>
-        
-        <div class="row">
-            <div class="form-group">
-                <label>बैंक का नाम:</label>
-                <input type="text" name="bank_name">
-            </div>
-            <div class="form-group">
-                <label>खाता धारक का नाम:</label>
-                <input type="text" name="account_holder">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <label>खाता संख्या (A/c No):</label>
-                <input type="text" name="account_no">
-            </div>
-            <div class="form-group">
-                <label>IFSC कोड:</label>
-                <input type="text" name="ifsc_code" style="text-transform:uppercase;">
-            </div>
-        </div>
-
-        <!-- Section 4 -->
-        <div class="section-title">4. नियम, शर्तें एवं घोषणा (Terms & Conditions)</div>
-        
-        <ul class="terms-list">
-            <li><b>सहारा 30 (विकल्प 1):</b> "मैं एतद्द्वारा कन्हा प्रो कैपिटल (Kanha Pro Capital) द्वारा स्वीकृत लोन राशि एवं उसकी निर्धारित शर्तों को पूर्णतः स्वीकार करता/करती हूँ। मैं 1 माह की अवधि के लिए 24% वार्षिक (2% मासिक) की दर से ब्याज का भुगतान करने के लिए सहमत हूँ। इसके अतिरिक्त, मैं लोन राशि पर लागू 4% एल.पी.एफ. (LPF), दस्तावेज़ शुल्क (Documentation Charges) एवं स्टाम्प ड्यूटी (Stamp Duty) तथा इन शुल्कों पर 18% जी.एस.टी. (GST) के भुगतान को भी सहर्ष स्वीकार करता/करती हूँ। उक्त संपूर्ण देय राशि का भुगतान लोन अवधि (1 माह) की समाप्ति पर निर्धारित नियमानुसार किया जाएगा।"</li>
-            <li><b>कन्हा लोन कंसलटेंट (विकल्प 2):</b> "मैं एतद्द्वारा कन्हा प्रो कैपिटल (Kanha Pro Capital) के माध्यम से (डायरेक्ट सेलिंग एजेंट/DSA के रूप में) लोन प्राप्त करने हेतु अपना आवेदन प्रस्तुत करता/करती हूँ। मैं कन्हा प्रो कैपिटल एवं संबंधित वित्तीय संस्थानों/बैंकों द्वारा निर्धारित लोन के सभी नियमों, शर्तों एवं दिशानिर्देशों का पूर्ण अनुपालन करने का वचन देता/देती हूँ। इसके अतिरिक्त, मैं लोन प्रोसेसिंग एवं सेवा शुल्क के रूप में कन्हा प्रो कैपिटल द्वारा निर्धारित 3% दस्तावेज़ शुल्क (Documentation Charges) के भुगतान को सहर्ष स्वीकार एवं स्वीकृत करता/करती हूँ।"</li>
-            <li>नियत तिथि (Due Date) के बाद भुगतान करने की स्थिति में संस्था के नियमानुसार विलंब शुल्क (Late Fees) व अतिरिक्त ब्याज देय होगा।</li>
-        </ul>
-
-        <div class="declaration">
-            <input type="checkbox" id="dec" required checked>
-            <label for="dec">मैं यह प्रमाणित करता/करती हूँ कि इस आवेदन पत्र में मेरे द्वारा दी गई सभी जानकारियाँ पूरी तरह सत्य और सही हैं।</label>
-        </div>
-
-        <!-- Signatures with Working E-Sign Canvas -->
-        <div class="signature-section">
-            <div class="signature-box">
-                <div class="title">आवेदक के हस्ताक्षर</div>
-                <div class="subtitle">(Customer Signature)</div>
-                <div class="canvas-container">
-                    <canvas id="canvas1"></canvas>
+                        <div class="section-title">2. ऋण नियम एवं सामान्य शर्तें (Rules & Directives)</div>
+                        <div class="rules-box">
+                            <ul class="rules-list">
+                                <li><strong>इमरजेंसी लोन शुल्क structure:</strong> Emergency Micro Loans (सहारा 30) पर <strong>3% LPF (Loan Processing Fee)</strong> और <strong>1% Risk Fee</strong> देय होगी।</li>
+                                <li><strong>दस्तावेज़ सत्यापन:</strong> आवेदक द्वारा प्रदान की गई सभी जानकारी एवं KYC दस्तावेज़ सही और वैध होने चाहिए। गलत पाए जाने पर आवेदन रद्द कर दिया जाएगा।</li>
+                                <li><strong>भुगतान अवधि:</strong> सहारा 30 योजना के अंतर्गत स्वीकृत ऋण राशि का भुगतान 30 दिनों की निर्धारित समय सीमा में करना अनिवार्य है।</li>
+                                <li><strong>स्वीकृति का अधिकार:</strong> लोन स्वीकृत या अस्वीकृत करने का अंतिम अधिकार KANHA PRO-CAPITAL PVT LTD प्रबंधन के पास सुरक्षित रहेगा।</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sheet-footer">
+                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                    </div>
                 </div>
-                <button type="button" class="clear-btn" onclick="clearCanvas('canvas1')">साफ करें</button>
             </div>
 
-            <div class="signature-box">
-                <div class="title">अधिकृत हस्ताक्षरकर्ता</div>
-                <div class="subtitle">(Jagmohan - Kanha Pro-Capital)</div>
-                <div class="canvas-container">
-                    <canvas id="canvas2"></canvas>
+            <!-- PAGE 2 -->
+            <div class="form-page" id="page2">
+                <div class="doc-sheet" id="sheet2">
+                    <div class="sheet-header">
+                        <div>
+                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <div class="tagline">Empowering Your Financial Growth</div>
+                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
+                        </div>
+                        <div class="doc-badge">Step 2: Details & Sign</div>
+                    </div>
+
+                    <div class="sheet-body">
+                        <div class="section-title">3. लोन विकल्प चुनें (Select Loan Scheme)</div>
+                        
+                        <div class="loan-options-grid">
+                            <div class="loan-card selected" onclick="setProduct(this)">
+                                <span class="loan-tag tag-blue">⚡ Emergency Micro Loan</span>
+                                <div class="loan-card-head">
+                                    <h4>सहारा 30 (Sahara 30)</h4>
+                                    <input type="radio" name="prod" checked>
+                                </div>
+                                <div class="loan-details">
+                                    <div><span>ऋण सीमा:</span> <strong>₹4,000 - ₹15,000</strong></div>
+                                    <div><span>शुल्क Structure:</span> <strong>3% LPF + 1% Risk Fee</strong></div>
+                                    <div><span>अवधि:</span> <strong>30 दिन (1 महीना)</strong></div>
+                                </div>
+                            </div>
+
+                            <div class="loan-card" onclick="setProduct(this)">
+                                <span class="loan-tag tag-green">💼 Business & Personal</span>
+                                <div class="loan-card-head">
+                                    <h4>कन्हा लोन कंसलटेंट</h4>
+                                    <input type="radio" name="prod">
+                                </div>
+                                <div class="loan-details">
+                                    <div><span>ऋण सीमा:</span> <strong>₹25,000 - ₹5,00,000</strong></div>
+                                    <div><span>ब्याज दर:</span> <strong>10% - 26% p.a.</strong></div>
+                                    <div><span>अवधि:</span> <strong>8 - 36 महीने</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 10px;">
+                            <label>आवश्यक लोन राशि (₹) *</label>
+                            <input type="number" placeholder="Enter Amount" required>
+                        </div>
+
+                        <div class="section-title">4. बैंक खाते का विवरण (Bank Account Details)</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>बैंक का नाम</label>
+                                <input type="text" placeholder="Bank Name">
+                            </div>
+                            <div class="form-group">
+                                <label>खाता धारक का नाम</label>
+                                <input type="text" placeholder="Account Holder">
+                            </div>
+                            <div class="form-group">
+                                <label>खाता नंबर</label>
+                                <input type="text" placeholder="Account Number">
+                            </div>
+                            <div class="form-group">
+                                <label>IFSC कोड</label>
+                                <input type="text" id="ifsccode" class="uppercase-field" placeholder="IFSC Code" oninput="forceUppercase(this)">
+                            </div>
+                        </div>
+
+                        <div class="section-title">5. हस्ताक्षर (Signature)</div>
+                        <div class="signatures-single">
+                            <div class="sig-box">
+                                <h5>आवेदक का हस्ताक्षर</h5>
+                                <span>(Customer Signature)</span>
+                                <div class="canvas-wrap">
+                                    <canvas id="c1"></canvas>
+                                    <img id="img_c1" class="sig-img" alt="Sign 1">
+                                </div>
+                                <button type="button" class="clear-btn" onclick="clearSig('c1', 'img_c1')">Clear & Retry</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sheet-footer">
+                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                    </div>
                 </div>
-                <button type="button" class="clear-btn" onclick="clearCanvas('canvas2')">साफ करें</button>
             </div>
-        </div>
 
-        <!-- Footer Row -->
-        <div class="footer-row">
-            <div class="form-group">
-                <label>दिनांक (Date):</label>
-                <input type="date" id="formDate">
+            <!-- PAGE 3 -->
+            <div class="form-page" id="page3">
+                <div class="doc-sheet" id="sheet3">
+                    <div class="sheet-header">
+                        <div>
+                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <div class="tagline">Empowering Your Financial Growth</div>
+                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
+                        </div>
+                        <div class="doc-badge">Step 3: KYC Photos</div>
+                    </div>
+
+                    <div class="sheet-body">
+                        <div class="section-title">6. अपलोड किए गए KYC दस्तावेज</div>
+
+                        <div class="kyc-grid">
+                            <div class="kyc-card">
+                                <h4>1. आधार कार्ड (Front)</h4>
+                                <div class="kyc-preview-frame" id="pv1"><span>कोई फोटो नहीं</span></div>
+                                <div class="upload-controls">
+                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv1')"></label>
+                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv1')"></label>
+                                </div>
+                            </div>
+
+                            <div class="kyc-card">
+                                <h4>2. आधार कार्ड (Back)</h4>
+                                <div class="kyc-preview-frame" id="pv2"><span>कोई फोटो नहीं</span></div>
+                                <div class="upload-controls">
+                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv2')"></label>
+                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv2')"></label>
+                                </div>
+                            </div>
+
+                            <div class="kyc-card">
+                                <h4>3. पैन कार्ड (Front)</h4>
+                                <div class="kyc-preview-frame" id="pv3"><span>कोई फोटो नहीं</span></div>
+                                <div class="upload-controls">
+                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv3')"></label>
+                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv3')"></label>
+                                </div>
+                            </div>
+
+                            <div class="kyc-card">
+                                <h4>4. लाइव सेल्फी</h4>
+                                <div class="kyc-preview-frame" id="pv4"><span>कोई फोटो नहीं</span></div>
+                                <div class="upload-controls">
+                                    <label class="btn-upload">📷 Selfie <input type="file" accept="image/*" capture="user" onchange="previewImg(this, 'pv4')"></label>
+                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv4')"></label>
+                                </div>
+                            </div>
+
+                            <!-- High Quality Expanded Passbook Section -->
+                            <div class="kyc-card full-span">
+                                <h4>5. बैंक पासबुक / कैंसिल चेक (High Quality Clear View)</h4>
+                                <div class="kyc-preview-frame passbook-frame" id="pv5"><span>कोई फोटो नहीं</span></div>
+                                <div class="upload-controls">
+                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv5')"></label>
+                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv5')"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="sheet-footer">
+                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                    </div>
+                </div>
             </div>
-            <div class="form-group" style="text-align: right; font-weight: bold; font-size: 13px;">
-                सील / मोहर (Seal / Stamp)
-            </div>
-        </div>
 
-        <button type="button" class="submit-btn" onclick="submitAndPrint()">आवेदन फॉर्म सबमिट और PDF प्रिंट करें</button>
+        </form>
 
-    </form>
-</div>
+    </div>
+
+    <div class="action-dock">
+        <button type="button" class="dock-btn" id="btnBack" onclick="goPage(-1)" style="display:none;">◀ Back</button>
+        <button type="button" class="dock-btn primary" id="btnNext" onclick="goPage(1)">Next ▶</button>
+        <button type="button" class="dock-btn save-pdf" id="btnSavePdf" onclick="downloadPDF()" style="display:none;">📥 Save to PDF</button>
+    </div>
 
 <script>
-    document.getElementById('formDate').valueAsDate = new Date();
+    let curPage = 1;
 
-    // E-Signature Pad Functionality
-    function setupSignatureCanvas(canvasId) {
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
-        let isDrawing = false;
+    function forceUppercase(element) {
+        element.value = element.value.toUpperCase();
+    }
 
-        function resizeCanvas() {
-            const rect = canvas.parentElement.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = rect.height;
-            ctx.lineWidth = 2;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#000000';
+    function goPage(dir) {
+        if (dir === 1) {
+            const curP = document.getElementById(`page${curPage}`);
+            const reqs = curP.querySelectorAll('input[required]');
+            let valid = true;
+            reqs.forEach(i => {
+                if(!i.checkValidity()) { i.reportValidity(); valid = false; }
+            });
+            if(!valid) return;
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        setTimeout(resizeCanvas, 100);
+        curPage += dir;
+        if(curPage < 1) curPage = 1;
+        if(curPage > 3) curPage = 3;
 
+        for(let i=1; i<=3; i++) {
+            document.getElementById(`page${i}`).classList.toggle('active', i === curPage);
+            document.getElementById(`step${i}`).classList.toggle('active', i === curPage);
+        }
+
+        if(curPage === 2) {
+            setTimeout(() => { initSig('c1'); }, 100);
+        }
+
+        document.getElementById('btnBack').style.display = curPage > 1 ? 'block' : 'none';
+        document.getElementById('btnNext').style.display = curPage < 3 ? 'block' : 'none';
+        document.getElementById('btnSavePdf').style.display = curPage === 3 ? 'block' : 'none';
+
+        window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function setProduct(card) {
+        document.querySelectorAll('.loan-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        card.querySelector('input').checked = true;
+    }
+
+    function previewImg(input, id) {
+        if(input.files && input.files[0]) {
+            const r = new FileReader();
+            r.onload = function(e) {
+                document.getElementById(id).innerHTML = `<img src="${e.target.result}" alt="KYC Doc">`;
+            }
+            r.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function initSig(id) {
+        const c = document.getElementById(id);
+        const ctx = c.getContext('2d');
+        const rect = c.parentElement.getBoundingClientRect();
+        c.width = rect.width;
+        c.height = rect.height;
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#0f172a';
+
+        let draw = false;
         function getPos(e) {
-            const rect = canvas.getBoundingClientRect();
-            let clientX = e.clientX;
-            let clientY = e.clientY;
+            const r = c.getBoundingClientRect();
+            const cx = e.touches ? e.touches[0].clientX : e.clientX;
+            const cy = e.touches ? e.touches[0].clientY : e.clientY;
+            return { x: cx - r.left, y: cy - r.top };
+        }
 
-            if (e.touches && e.touches.length > 0) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
+        c.addEventListener('mousedown', (e) => {
+            draw = true;
+            const p = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+        });
+
+        c.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            draw = true;
+            const p = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+        }, { passive: false });
+
+        c.addEventListener('mousemove', (e) => {
+            if(!draw) return;
+            const p = getPos(e);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+        });
+
+        c.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if(!draw) return;
+            const p = getPos(e);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+        }, { passive: false });
+
+        c.addEventListener('mouseup', () => draw = false);
+        c.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            draw = false;
+        }, { passive: false });
+    }
+
+    function clearSig(cId, imgId) {
+        const c = document.getElementById(cId);
+        c.getContext('2d').clearRect(0, 0, c.width, c.height);
+        document.getElementById(imgId).style.display = 'none';
+        c.style.display = 'block';
+    }
+
+    function freezeSig(cId, imgId) {
+        const c = document.getElementById(cId);
+        const img = document.getElementById(imgId);
+        img.src = c.toDataURL('image/png', 1.0);
+        img.style.display = 'block';
+        c.style.display = 'none';
+    }
+
+    function unfreezeSig(cId, imgId) {
+        document.getElementById(cId).style.display = 'block';
+        document.getElementById(imgId).style.display = 'none';
+    }
+
+    async function downloadPDF() {
+        const form = document.getElementById('loanForm');
+        if(!form.checkValidity()) { form.reportValidity(); return; }
+
+        const pan = document.getElementById('pancard');
+        if(pan) pan.value = pan.value.toUpperCase();
+        
+        const ifsc = document.getElementById('ifsccode');
+        if(ifsc) ifsc.value = ifsc.value.toUpperCase();
+
+        freezeSig('c1', 'img_c1');
+
+        const pages = [document.getElementById('page1'), document.getElementById('page2'), document.getElementById('page3')];
+        const sheets = [document.getElementById('sheet1'), document.getElementById('sheet2'), document.getElementById('sheet3')];
+        
+        const name = document.getElementById('fullname').value || 'User';
+
+        try {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            const pdfW = pdf.internal.pageSize.getWidth();
+            const pdfH = pdf.internal.pageSize.getHeight();
+
+            pages.forEach(p => p.style.display = 'block');
+
+            for (let i = 0; i < sheets.length; i++) {
+                sheets[i].classList.add('pdf-export-mode');
+                
+                // Scale increased to 4 for ultra HD resolution photo rendering
+                const canvas = await html2canvas(sheets[i], {
+                    scale: 4,
+                    useCORS: true,
+                    allowTaint: true,
+                    logging: false,
+                    imageTimeout: 0
+                });
+
+                if (i > 0) pdf.addPage();
+                pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pdfW, pdfH);
+                
+                sheets[i].classList.remove('pdf-export-mode');
             }
 
-            return {
-                x: clientX - rect.left,
-                y: clientY - rect.top
-            };
-        }
+            for(let i=1; i<=3; i++) {
+                document.getElementById(`page${i}`).classList.toggle('active', i === curPage);
+            }
 
-        function startDrawing(e) {
-            isDrawing = true;
-            const pos = getPos(e);
-            ctx.beginPath();
-            ctx.moveTo(pos.x, pos.y);
-            e.preventDefault();
-        }
+            unfreezeSig('c1', 'img_c1');
 
-        function draw(e) {
-            if (!isDrawing) return;
-            const pos = getPos(e);
-            ctx.lineTo(pos.x, pos.y);
-            ctx.stroke();
-            e.preventDefault();
-        }
+            pdf.save(`Loan_Application_${name}.pdf`);
 
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        // Mouse Events
-        canvas.addEventListener('mousedown', startDrawing);
-        canvas.addEventListener('mousemove', draw);
-        window.addEventListener('mouseup', stopDrawing);
-
-        // Touch Events (Mobile/Tablet)
-        canvas.addEventListener('touchstart', startDrawing, { passive: false });
-        canvas.addEventListener('touchmove', draw, { passive: false });
-        canvas.addEventListener('touchend', stopDrawing);
-    }
-
-    // Clear Canvas
-    function clearCanvas(canvasId) {
-        const canvas = document.getElementById(canvasId);
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    // Initialize Canvas Pads
-    window.onload = function() {
-        setupSignatureCanvas('canvas1');
-        setupSignatureCanvas('canvas2');
-    };
-
-    function submitAndPrint() {
-        var form = document.getElementById('loanForm');
-        if (form.checkValidity()) {
-            window.print();
-        } else {
-            form.reportValidity();
+        } catch (err) {
+            console.error(err);
+            alert("PDF Generate karne me samasya aayi.");
         }
     }
 </script>
-
 </body>
 </html>
