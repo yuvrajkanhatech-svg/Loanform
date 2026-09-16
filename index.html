@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Application Form - KANHA PRO-CAPITAL PVT LTD</title>
+    <title>Loan Application Form - KANHA YUJALASH PVT LTD</title>
     <!-- jsPDF & html2canvas -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -136,13 +136,6 @@
             color: #34d399;
             font-weight: 600;
             margin-top: 2px;
-        }
-
-        .sheet-header .udyam-subtext {
-            font-size: 11px;
-            color: #94a3b8;
-            margin-top: 4px;
-            font-weight: 600;
         }
 
         .sheet-header .doc-badge {
@@ -357,7 +350,7 @@
         }
 
         .canvas-wrap {
-            height: 110px;
+            height: 130px;
             background: white;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
@@ -372,17 +365,10 @@
             touch-action: none;
         }
 
-        .sig-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: none;
-        }
-
         .clear-btn {
             margin-top: 10px;
             font-size: 11px;
-            padding: 5px 14px;
+            padding: 6px 16px;
             background: #fff;
             border: 1px solid #cbd5e1;
             border-radius: 4px;
@@ -432,7 +418,6 @@
             position: relative;
         }
 
-        /* High Resolution Image Preview Styling */
         .kyc-preview-frame img {
             max-width: 100%;
             max-height: 100%;
@@ -441,11 +426,8 @@
             object-fit: contain;
             display: block;
             margin: auto;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
         }
 
-        /* High Resolution Box for Passbook */
         .kyc-preview-frame.passbook-frame {
             height: 240px;
             background: #ffffff;
@@ -469,12 +451,16 @@
             background: #1e293b;
             color: white;
             border: none;
-            padding: 8px 0;
+            padding: 10px 0;
             font-size: 11px;
             border-radius: 6px;
             text-align: center;
             cursor: pointer;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
         }
 
         .btn-upload input {
@@ -557,7 +543,7 @@
     <div class="main-container">
         
         <div class="app-bar">
-            <h1>KANHA PRO-CAPITAL PVT LTD</h1>
+            <h1>KANHA YUJALASH PVT LTD</h1>
             <span style="font-size: 11px; opacity: 0.8;">Portal Application</span>
         </div>
 
@@ -583,9 +569,8 @@
                 <div class="doc-sheet" id="sheet1">
                     <div class="sheet-header">
                         <div>
-                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <h2>KANHA YUJALASH PVT LTD</h2>
                             <div class="tagline">Empowering Your Financial Growth</div>
-                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
                         </div>
                         <div class="doc-badge">Step 1: Applicant</div>
                     </div>
@@ -642,12 +627,12 @@
                                 <li><strong>इमरजेंसी लोन शुल्क structure:</strong> Emergency Micro Loans (सहारा 30) पर <strong>3% LPF (Loan Processing Fee)</strong> और <strong>1% Risk Fee</strong> देय होगी।</li>
                                 <li><strong>दस्तावेज़ सत्यापन:</strong> आवेदक द्वारा प्रदान की गई सभी जानकारी एवं KYC दस्तावेज़ सही और वैध होने चाहिए। गलत पाए जाने पर आवेदन रद्द कर दिया जाएगा।</li>
                                 <li><strong>भुगतान अवधि:</strong> सहारा 30 योजना के अंतर्गत स्वीकृत ऋण राशि का भुगतान 30 दिनों की निर्धारित समय सीमा में करना अनिवार्य है।</li>
-                                <li><strong>स्वीकृति का अधिकार:</strong> लोन स्वीकृत या अस्वीकृत करने का अंतिम अधिकार KANHA PRO-CAPITAL PVT LTD प्रबंधन के पास सुरक्षित रहेगा।</li>
+                                <li><strong>स्वीकृति का अधिकार:</strong> लोन स्वीकृत या अस्वीकृत करने का अंतिम अधिकार KANHA YUJALASH PVT LTD प्रबंधन के पास सुरक्षित रहेगा।</li>
                             </ul>
                         </div>
                     </div>
                     <div class="sheet-footer">
-                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                        © Copyright 2026 - KANHA YUJALASH PVT LTD. All Rights Reserved.
                     </div>
                 </div>
             </div>
@@ -657,84 +642,78 @@
                 <div class="doc-sheet" id="sheet2">
                     <div class="sheet-header">
                         <div>
-                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <h2>KANHA YUJALASH PVT LTD</h2>
                             <div class="tagline">Empowering Your Financial Growth</div>
-                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
                         </div>
-                        <div class="doc-badge">Step 2: Details & Sign</div>
+                        <div class="doc-badge">Step 2: Bank & Loan</div>
                     </div>
 
                     <div class="sheet-body">
-                        <div class="section-title">3. लोन विकल्प चुनें (Select Loan Scheme)</div>
-                        
+                        <div class="section-title">3. बैंक खाते का विवरण (Bank Details)</div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>बैंक का नाम *</label>
+                                <input type="text" placeholder="Bank Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>खाता संख्या (Account No.) *</label>
+                                <input type="text" placeholder="Account Number" required>
+                            </div>
+                            <div class="form-group">
+                                <label>IFSC कोड *</label>
+                                <input type="text" class="uppercase-field" placeholder="SBIN0001234" oninput="forceUppercase(this)" required>
+                            </div>
+                            <div class="form-group">
+                                <label>शाखा का नाम (Branch)</label>
+                                <input type="text" placeholder="Branch Name">
+                            </div>
+                        </div>
+
+                        <div class="section-title">4. लोन योजना का चयन (Loan Options)</div>
                         <div class="loan-options-grid">
-                            <div class="loan-card selected" onclick="setProduct(this)">
-                                <span class="loan-tag tag-blue">⚡ Emergency Micro Loan</span>
+                            <div class="loan-card selected" onclick="selectLoanCard(this)">
                                 <div class="loan-card-head">
-                                    <h4>सहारा 30 (Sahara 30)</h4>
-                                    <input type="radio" name="prod" checked>
+                                    <h4>सहारा 30 (Micro Loan)</h4>
+                                    <input type="radio" name="loanScheme" value="Sahara 30" checked>
                                 </div>
+                                <span class="loan-tag tag-green">Short Term</span>
                                 <div class="loan-details">
-                                    <div><span>ऋण सीमा:</span> <strong>₹4,000 - ₹15,000</strong></div>
-                                    <div><span>शुल्क Structure:</span> <strong>3% LPF + 1% Risk Fee</strong></div>
-                                    <div><span>अवधि:</span> <strong>30 दिन (1 महीना)</strong></div>
+                                    <div><span>अवधि:</span> <strong>30 दिन</strong></div>
+                                    <div><span>LPF + Risk Fee:</span> <strong>4% Total</strong></div>
                                 </div>
                             </div>
-
-                            <div class="loan-card" onclick="setProduct(this)">
-                                <span class="loan-tag tag-green">💼 Business & Personal</span>
+                            <div class="loan-card" onclick="selectLoanCard(this)">
                                 <div class="loan-card-head">
-                                    <h4>कन्हा लोन कंसलटेंट</h4>
-                                    <input type="radio" name="prod">
+                                    <h4>Regular Personal Loan</h4>
+                                    <input type="radio" name="loanScheme" value="Personal Loan">
                                 </div>
+                                <span class="loan-tag tag-blue">Flexible Term</span>
                                 <div class="loan-details">
-                                    <div><span>ऋण सीमा:</span> <strong>₹25,000 - ₹5,00,000</strong></div>
-                                    <div><span>ब्याज दर:</span> <strong>10% - 26% p.a.</strong></div>
-                                    <div><span>अवधि:</span> <strong>8 - 36 महीने</strong></div>
+                                    <div><span>अवधि:</span> <strong>6 - 24 माह</strong></div>
+                                    <div><span>ब्याज दर:</span> <strong>Standard Rate</strong></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group" style="margin-top: 10px;">
-                            <label>आवश्यक लोन राशि (₹) *</label>
+                        <div class="form-group full-width">
+                            <label>ऋण राशि की मांग (Required Amount ₹) *</label>
                             <input type="number" placeholder="Enter Amount" required>
                         </div>
 
-                        <div class="section-title">4. बैंक खाते का विवरण (Bank Account Details)</div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>बैंक का नाम</label>
-                                <input type="text" placeholder="Bank Name">
-                            </div>
-                            <div class="form-group">
-                                <label>खाता धारक का नाम</label>
-                                <input type="text" placeholder="Account Holder">
-                            </div>
-                            <div class="form-group">
-                                <label>खाता नंबर</label>
-                                <input type="text" placeholder="Account Number">
-                            </div>
-                            <div class="form-group">
-                                <label>IFSC कोड</label>
-                                <input type="text" id="ifsccode" class="uppercase-field" placeholder="IFSC Code" oninput="forceUppercase(this)">
-                            </div>
-                        </div>
-
-                        <div class="section-title">5. हस्ताक्षर (Signature)</div>
+                        <div class="section-title">5. आवेदक के हस्ताक्षर (Signature)</div>
                         <div class="signatures-single">
                             <div class="sig-box">
-                                <h5>आवेदक का हस्ताक्षर</h5>
-                                <span>(Customer Signature)</span>
+                                <h5>Applicant Signature</h5>
+                                <span>कृपया नीचे बॉक्स में साइन करें</span>
                                 <div class="canvas-wrap">
-                                    <canvas id="c1"></canvas>
-                                    <img id="img_c1" class="sig-img" alt="Sign 1">
+                                    <canvas id="sigCanvas"></canvas>
                                 </div>
-                                <button type="button" class="clear-btn" onclick="clearSig('c1', 'img_c1')">Clear & Retry</button>
+                                <button type="button" class="clear-btn" onclick="clearSignature()">Clear</button>
                             </div>
                         </div>
                     </div>
                     <div class="sheet-footer">
-                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                        © Copyright 2026 - KANHA YUJALASH PVT LTD. All Rights Reserved.
                     </div>
                 </div>
             </div>
@@ -744,270 +723,249 @@
                 <div class="doc-sheet" id="sheet3">
                     <div class="sheet-header">
                         <div>
-                            <h2>KANHA PRO-CAPITAL PVT LTD</h2>
+                            <h2>KANHA YUJALASH PVT LTD</h2>
                             <div class="tagline">Empowering Your Financial Growth</div>
-                            <div class="udyam-subtext">Udyam Registration: UDYAM-CG-15-0035950</div>
                         </div>
-                        <div class="doc-badge">Step 3: KYC Photos</div>
+                        <div class="doc-badge">Step 3: KYC Upload</div>
                     </div>
 
                     <div class="sheet-body">
-                        <div class="section-title">6. अपलोड किए गए KYC दस्तावेज</div>
-
+                        <div class="section-title">6. KYC दस्तावेज़ अपलोड करें</div>
+                        
                         <div class="kyc-grid">
+                            <!-- 1. Aadhaar Front -->
                             <div class="kyc-card">
                                 <h4>1. आधार कार्ड (Front)</h4>
-                                <div class="kyc-preview-frame" id="pv1"><span>कोई फोटो नहीं</span></div>
+                                <div class="kyc-preview-frame" id="frame-aadhaar-front">
+                                    <span>No file chosen</span>
+                                </div>
                                 <div class="upload-controls">
-                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv1')"></label>
-                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv1')"></label>
+                                    <label class="btn-upload">📷 Photo / Camera
+                                        <input type="file" accept="image/*" capture="environment" onchange="previewImage(this, 'frame-aadhaar-front')">
+                                    </label>
                                 </div>
                             </div>
 
+                            <!-- 2. Aadhaar Back -->
                             <div class="kyc-card">
                                 <h4>2. आधार कार्ड (Back)</h4>
-                                <div class="kyc-preview-frame" id="pv2"><span>कोई फोटो नहीं</span></div>
+                                <div class="kyc-preview-frame" id="frame-aadhaar-back">
+                                    <span>No file chosen</span>
+                                </div>
                                 <div class="upload-controls">
-                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv2')"></label>
-                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv2')"></label>
+                                    <label class="btn-upload">📷 Photo / Camera
+                                        <input type="file" accept="image/*" capture="environment" onchange="previewImage(this, 'frame-aadhaar-back')">
+                                    </label>
                                 </div>
                             </div>
 
+                            <!-- 3. PAN Card -->
                             <div class="kyc-card">
-                                <h4>3. पैन कार्ड (Front)</h4>
-                                <div class="kyc-preview-frame" id="pv3"><span>कोई फोटो नहीं</span></div>
+                                <h4>3. पैन कार्ड</h4>
+                                <div class="kyc-preview-frame" id="frame-pan">
+                                    <span>No file chosen</span>
+                                </div>
                                 <div class="upload-controls">
-                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv3')"></label>
-                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv3')"></label>
+                                    <label class="btn-upload">📷 Photo / Camera
+                                        <input type="file" accept="image/*" capture="environment" onchange="previewImage(this, 'frame-pan')">
+                                    </label>
                                 </div>
                             </div>
 
+                            <!-- 4. Applicant Photo (Selfie / Front Camera) -->
                             <div class="kyc-card">
-                                <h4>4. लाइव सेल्फी</h4>
-                                <div class="kyc-preview-frame" id="pv4"><span>कोई फोटो नहीं</span></div>
+                                <h4>4. आवेदक की फोटो</h4>
+                                <div class="kyc-preview-frame" id="frame-photo">
+                                    <span>No file chosen</span>
+                                </div>
                                 <div class="upload-controls">
-                                    <label class="btn-upload">📷 Selfie <input type="file" accept="image/*" capture="user" onchange="previewImg(this, 'pv4')"></label>
-                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv4')"></label>
+                                    <label class="btn-upload">🤳 Take Selfie
+                                        <input type="file" accept="image/*" capture="user" onchange="previewImage(this, 'frame-photo')">
+                                    </label>
                                 </div>
                             </div>
 
-                            <!-- High Quality Expanded Passbook Section -->
+                            <!-- 5. Bank Passbook -->
                             <div class="kyc-card full-span">
-                                <h4>5. बैंक पासबुक / कैंसिल चेक (High Quality Clear View)</h4>
-                                <div class="kyc-preview-frame passbook-frame" id="pv5"><span>कोई फोटो नहीं</span></div>
+                                <h4>5. बैंक पासबुक / कैंसिल चेक</h4>
+                                <div class="kyc-preview-frame passbook-frame" id="frame-passbook">
+                                    <span>No file chosen</span>
+                                </div>
                                 <div class="upload-controls">
-                                    <label class="btn-upload">📷 Camera <input type="file" accept="image/*" capture="environment" onchange="previewImg(this, 'pv5')"></label>
-                                    <label class="btn-upload">📁 Gallery <input type="file" accept="image/*" onchange="previewImg(this, 'pv5')"></label>
+                                    <label class="btn-upload">📷 Photo / Passbook Upload
+                                        <input type="file" accept="image/*" capture="environment" onchange="previewImage(this, 'frame-passbook')">
+                                    </label>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="sheet-footer">
-                        © Copyright apr 2026 - KANHA PRO-CAPITAL PVT LTD. All Rights Reserved.
+                        © Copyright 2026 - KANHA YUJALASH PVT LTD. All Rights Reserved.
                     </div>
                 </div>
             </div>
 
         </form>
 
+        <!-- Dock Actions -->
+        <div class="action-dock">
+            <button type="button" class="dock-btn" id="prevBtn" onclick="changeStep(-1)" style="display:none;">Back</button>
+            <button type="button" class="dock-btn primary" id="nextBtn" onclick="changeStep(1)">Next</button>
+            <button type="button" class="dock-btn save-pdf" id="pdfBtn" onclick="generatePDF()" style="display:none;">Save PDF</button>
+        </div>
+
     </div>
 
-    <div class="action-dock">
-        <button type="button" class="dock-btn" id="btnBack" onclick="goPage(-1)" style="display:none;">◀ Back</button>
-        <button type="button" class="dock-btn primary" id="btnNext" onclick="goPage(1)">Next ▶</button>
-        <button type="button" class="dock-btn save-pdf" id="btnSavePdf" onclick="downloadPDF()" style="display:none;">📥 Save to PDF</button>
-    </div>
+    <script>
+        let currentStep = 1;
 
-<script>
-    let curPage = 1;
-
-    function forceUppercase(element) {
-        element.value = element.value.toUpperCase();
-    }
-
-    function goPage(dir) {
-        if (dir === 1) {
-            const curP = document.getElementById(`page${curPage}`);
-            const reqs = curP.querySelectorAll('input[required]');
-            let valid = true;
-            reqs.forEach(i => {
-                if(!i.checkValidity()) { i.reportValidity(); valid = false; }
-            });
-            if(!valid) return;
+        function forceUppercase(element) {
+            element.value = element.value.toUpperCase();
         }
 
-        curPage += dir;
-        if(curPage < 1) curPage = 1;
-        if(curPage > 3) curPage = 3;
-
-        for(let i=1; i<=3; i++) {
-            document.getElementById(`page${i}`).classList.toggle('active', i === curPage);
-            document.getElementById(`step${i}`).classList.toggle('active', i === curPage);
+        function selectLoanCard(cardElement) {
+            document.querySelectorAll('.loan-card').forEach(card => card.classList.remove('selected'));
+            cardElement.classList.add('selected');
+            const radio = cardElement.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
         }
 
-        if(curPage === 2) {
-            setTimeout(() => { initSig('c1'); }, 100);
-        }
+        function changeStep(direction) {
+            const totalSteps = 3;
+            const newStep = currentStep + direction;
 
-        document.getElementById('btnBack').style.display = curPage > 1 ? 'block' : 'none';
-        document.getElementById('btnNext').style.display = curPage < 3 ? 'block' : 'none';
-        document.getElementById('btnSavePdf').style.display = curPage === 3 ? 'block' : 'none';
+            if (newStep >= 1 && newStep <= totalSteps) {
+                document.getElementById(`page${currentStep}`).classList.remove('active');
+                document.getElementById(`step${currentStep}`).classList.remove('active');
 
-        window.scrollTo({top:0, behavior:'smooth'});
-    }
+                currentStep = newStep;
 
-    function setProduct(card) {
-        document.querySelectorAll('.loan-card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        card.querySelector('input').checked = true;
-    }
+                document.getElementById(`page${currentStep}`).classList.add('active');
+                document.getElementById(`step${currentStep}`).classList.add('active');
 
-    function previewImg(input, id) {
-        if(input.files && input.files[0]) {
-            const r = new FileReader();
-            r.onload = function(e) {
-                document.getElementById(id).innerHTML = `<img src="${e.target.result}" alt="KYC Doc">`;
+                // Toggle Dock Buttons
+                document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
+                document.getElementById('nextBtn').style.display = currentStep === totalSteps ? 'none' : 'block';
+                document.getElementById('pdfBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
+
+                // Re-initialize/Resize Canvas when step 2 becomes visible
+                if (currentStep === 2) {
+                    setTimeout(resizeCanvas, 100);
+                }
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
-            r.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function initSig(id) {
-        const c = document.getElementById(id);
-        const ctx = c.getContext('2d');
-        const rect = c.parentElement.getBoundingClientRect();
-        c.width = rect.width;
-        c.height = rect.height;
-        ctx.lineWidth = 2.5;
-        ctx.strokeStyle = '#0f172a';
-
-        let draw = false;
-        function getPos(e) {
-            const r = c.getBoundingClientRect();
-            const cx = e.touches ? e.touches[0].clientX : e.clientX;
-            const cy = e.touches ? e.touches[0].clientY : e.clientY;
-            return { x: cx - r.left, y: cy - r.top };
         }
 
-        c.addEventListener('mousedown', (e) => {
-            draw = true;
-            const p = getPos(e);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-        });
+        // --- Signature Canvas Implementation ---
+        const canvas = document.getElementById('sigCanvas');
+        const ctx = canvas ? canvas.getContext('2d') : null;
+        let isDrawing = false;
 
-        c.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            draw = true;
-            const p = getPos(e);
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-        }, { passive: false });
+        function resizeCanvas() {
+            if (!canvas) return;
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width || 300;
+            canvas.height = rect.height || 130;
+            if (ctx) {
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#000000';
+            }
+        }
 
-        c.addEventListener('mousemove', (e) => {
-            if(!draw) return;
-            const p = getPos(e);
-            ctx.lineTo(p.x, p.y);
-            ctx.stroke();
-        });
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
 
-        c.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            if(!draw) return;
-            const p = getPos(e);
-            ctx.lineTo(p.x, p.y);
-            ctx.stroke();
-        }, { passive: false });
-
-        c.addEventListener('mouseup', () => draw = false);
-        c.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            draw = false;
-        }, { passive: false });
-    }
-
-    function clearSig(cId, imgId) {
-        const c = document.getElementById(cId);
-        c.getContext('2d').clearRect(0, 0, c.width, c.height);
-        document.getElementById(imgId).style.display = 'none';
-        c.style.display = 'block';
-    }
-
-    function freezeSig(cId, imgId) {
-        const c = document.getElementById(cId);
-        const img = document.getElementById(imgId);
-        img.src = c.toDataURL('image/png', 1.0);
-        img.style.display = 'block';
-        c.style.display = 'none';
-    }
-
-    function unfreezeSig(cId, imgId) {
-        document.getElementById(cId).style.display = 'block';
-        document.getElementById(imgId).style.display = 'none';
-    }
-
-    async function downloadPDF() {
-        const form = document.getElementById('loanForm');
-        if(!form.checkValidity()) { form.reportValidity(); return; }
-
-        const pan = document.getElementById('pancard');
-        if(pan) pan.value = pan.value.toUpperCase();
-        
-        const ifsc = document.getElementById('ifsccode');
-        if(ifsc) ifsc.value = ifsc.value.toUpperCase();
-
-        freezeSig('c1', 'img_c1');
-
-        const pages = [document.getElementById('page1'), document.getElementById('page2'), document.getElementById('page3')];
-        const sheets = [document.getElementById('sheet1'), document.getElementById('sheet2'), document.getElementById('sheet3')];
-        
-        const name = document.getElementById('fullname').value || 'User';
-
-        try {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
+        if (canvas) {
+            // Mouse Events
+            canvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                ctx.beginPath();
+                const rect = canvas.getBoundingClientRect();
+                ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
             });
 
-            const pdfW = pdf.internal.pageSize.getWidth();
-            const pdfH = pdf.internal.pageSize.getHeight();
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+                ctx.stroke();
+            });
 
-            pages.forEach(p => p.style.display = 'block');
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mouseleave', () => isDrawing = false);
 
-            for (let i = 0; i < sheets.length; i++) {
-                sheets[i].classList.add('pdf-export-mode');
+            // Mobile Touch Events
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                ctx.beginPath();
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
+            }, { passive: false });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
+                ctx.stroke();
+            }, { passive: false });
+
+            canvas.addEventListener('touchend', () => isDrawing = false);
+        }
+
+        function clearSignature() {
+            if (!ctx || !canvas) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Image Preview Handler
+        function previewImage(input, frameId) {
+            const frame = document.getElementById(frameId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    frame.innerHTML = `<img src="${e.target.result}" alt="KYC Document">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // PDF Generation Handler using html2canvas & jsPDF
+        async function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pages = [document.getElementById('sheet1'), document.getElementById('sheet2'), document.getElementById('sheet3')];
+            
+            for (let i = 0; i < pages.length; i++) {
+                const page = pages[i];
+                const pageContainer = page.parentElement;
                 
-                // Scale increased to 4 for ultra HD resolution photo rendering
-                const canvas = await html2canvas(sheets[i], {
-                    scale: 4,
+                pageContainer.style.display = 'block';
+                page.classList.add('pdf-export-mode');
+
+                const canvasElement = await html2canvas(page, {
+                    scale: 2,
                     useCORS: true,
-                    allowTaint: true,
-                    logging: false,
-                    imageTimeout: 0
+                    logging: false
                 });
 
+                page.classList.remove('pdf-export-mode');
+                if (i + 1 !== currentStep) {
+                    pageContainer.style.display = 'none';
+                }
+
+                const imgData = canvasElement.toDataURL('image/jpeg', 0.95);
                 if (i > 0) pdf.addPage();
-                pdf.addImage(canvas.toDataURL('image/jpeg', 1.0), 'JPEG', 0, 0, pdfW, pdfH);
-                
-                sheets[i].classList.remove('pdf-export-mode');
+                pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
             }
 
-            for(let i=1; i<=3; i++) {
-                document.getElementById(`page${i}`).classList.toggle('active', i === curPage);
-            }
-
-            unfreezeSig('c1', 'img_c1');
-
-            pdf.save(`Loan_Application_${name}.pdf`);
-
-        } catch (err) {
-            console.error(err);
-            alert("PDF Generate karne me samasya aayi.");
+            pdf.save('Loan_Application_Kanha_Yujalash.pdf');
         }
-    }
-</script>
+    </script>
 </body>
 </html>
